@@ -6,7 +6,8 @@ namespace CoreWebApi.Controllers
     public class WcfController : ApiBaseController
     {
         [HttpGet]
-        public IActionResult EchoWcf()
+        [Route("echo")]
+        public IActionResult Echo()
         {
             return Ok("hello world");
         }
