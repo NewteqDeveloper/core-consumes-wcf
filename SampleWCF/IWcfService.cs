@@ -20,6 +20,9 @@ namespace SampleWCF
 
         [OperationContract]
         string Echo(string echoWord);
+
+        [OperationContract]
+        string EchoXml(string echoWord);
     }
 
 
