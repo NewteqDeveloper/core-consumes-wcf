@@ -10,15 +10,17 @@ export class AppComponent implements OnInit {
   title = 'angular-consume-wcf';
 
   serviceResult: string;
+  serviceResultXml: string;
 
   constructor(private wcfService: WcfService){
-
   }
 
   ngOnInit() {
-    debugger;
     this.wcfService.getEcho('hello').subscribe(result => {
       this.serviceResult = result;
-    })
+    });
+    this.wcfService.getEchoXml('hello world').subscribe(result => {
+      this.serviceResultXml = result;
+    });
   }
 }
