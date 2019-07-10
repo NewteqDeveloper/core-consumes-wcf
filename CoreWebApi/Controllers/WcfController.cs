@@ -1,7 +1,7 @@
 ﻿using CoreWebApi.Controllers.Base;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using SampleWcfService;
+using MySampleWcf;
 using System;
 using System.ServiceModel;
 using System.Threading.Tasks;

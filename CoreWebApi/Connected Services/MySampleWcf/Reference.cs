@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SampleWcfService
+namespace MySampleWcf
 {
     using System.Runtime.Serialization;
     
@@ -50,7 +50,7 @@ namespace SampleWcfService
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1-preview-30422-0661")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SampleWcfService.IWcfService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MySampleWcf.IWcfService")]
     public interface IWcfService
     {
         
@@ -58,20 +58,23 @@ namespace SampleWcfService
         System.Threading.Tasks.Task<string> GetDataAsync(int value);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IWcfService/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<SampleWcfService.CompositeType> GetDataUsingDataContractAsync(SampleWcfService.CompositeType composite);
+        System.Threading.Tasks.Task<MySampleWcf.CompositeType> GetDataUsingDataContractAsync(MySampleWcf.CompositeType composite);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/Echo", ReplyAction="http://tempuri.org/IWcfService/EchoResponse")]
         System.Threading.Tasks.Task<string> EchoAsync(string echoWord);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/EchoXml", ReplyAction="http://tempuri.org/IWcfService/EchoXmlResponse")]
+        System.Threading.Tasks.Task<string> EchoXmlAsync(string echoWord);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1-preview-30422-0661")]
-    public interface IWcfServiceChannel : SampleWcfService.IWcfService, System.ServiceModel.IClientChannel
+    public interface IWcfServiceChannel : MySampleWcf.IWcfService, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1-preview-30422-0661")]
-    public partial class WcfServiceClient : System.ServiceModel.ClientBase<SampleWcfService.IWcfService>, SampleWcfService.IWcfService
+    public partial class WcfServiceClient : System.ServiceModel.ClientBase<MySampleWcf.IWcfService>, MySampleWcf.IWcfService
     {
         
         /// <summary>
@@ -119,7 +122,7 @@ namespace SampleWcfService
             return base.Channel.GetDataAsync(value);
         }
         
-        public System.Threading.Tasks.Task<SampleWcfService.CompositeType> GetDataUsingDataContractAsync(SampleWcfService.CompositeType composite)
+        public System.Threading.Tasks.Task<MySampleWcf.CompositeType> GetDataUsingDataContractAsync(MySampleWcf.CompositeType composite)
         {
             return base.Channel.GetDataUsingDataContractAsync(composite);
         }
@@ -127,6 +130,11 @@ namespace SampleWcfService
         public System.Threading.Tasks.Task<string> EchoAsync(string echoWord)
         {
             return base.Channel.EchoAsync(echoWord);
+        }
+        
+        public System.Threading.Tasks.Task<string> EchoXmlAsync(string echoWord)
+        {
+            return base.Channel.EchoXmlAsync(echoWord);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
@@ -157,7 +165,7 @@ namespace SampleWcfService
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IWcfService))
             {
-                return new System.ServiceModel.EndpointAddress("http://localhost:8080/WcfService.svc");
+                return new System.ServiceModel.EndpointAddress("http://localhost:58915/WcfService.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
