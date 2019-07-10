@@ -10,7 +10,7 @@ export class AppComponent implements OnInit {
   title = 'angular-consume-wcf';
 
   serviceResult: string;
-  serviceResultXml: string;
+  serviceResultJson: string;
 
   constructor(private coreService: CoreService){
   }
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
       this.serviceResult = result;
     });
     this.coreService.getEchoJson('hello world JSON').subscribe(result => {
-      this.serviceResultXml = result;
+      this.serviceResultJson = result;
     });
   }
 }
