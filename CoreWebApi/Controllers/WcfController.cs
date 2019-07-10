@@ -64,5 +64,58 @@ namespace CoreWebApi.Controllers
             }
             return Ok(output);
         }
+
+        [HttpGet]
+        [Route("echoJson")]
+        public async Task<IActionResult> EchoJson(string input)
+        {
+            var wcfClient = new WcfServiceClient();
+            if (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
+            {
+                input = "nothing set";
+            }
+
+            var result = new Result();
+            var output = "An error has occured \r\n";
+
+            try
+            {
+                output = await wcfClient.EchoAsync(input);
+            }
+            catch (CommunicationException commsException)
+            {
+                if (Environment.IsDevelopment())
+                {
+                    output += $"The service is unreachable. The error from the exception is: {commsException.Message}";
+                }
+                else
+                {
+                    output += $"The service is unreachable.";
+                }
+            }
+            catch (Exception e)
+            {
+                if (Environment.IsDevelopment())
+                {
+                    output += $"Some unexpected exception occured. The error message is: {e.Message}\r\n\r\n The stacktrace is:\r\n{e.StackTrace}";
+                }
+                else
+                {
+                    output += $"Some unexpected exception occured.";
+                }
+            }
+            finally
+            {
+                await wcfClient.CloseAsync();
+            }
+
+            result.Value = output;
+            return Ok(result);
+        }
+
+        public class Result
+        {
+            public string Value { get; set; }
+        }
     }
 }
