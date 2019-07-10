@@ -28,13 +28,11 @@ namespace SampleWCF
             return composite;
         }
 
-        [WebGet(UriTemplate = "echo/{echoWord}", ResponseFormat = WebMessageFormat.Json)]
         public string Echo(string echoWord)
         {
             return $"The word you said with GET is: {echoWord}";
         }
 
-        [WebGet]
         public string EchoXml(string echoWord)
         {
             return $"The word you said with GET is: {echoWord}";

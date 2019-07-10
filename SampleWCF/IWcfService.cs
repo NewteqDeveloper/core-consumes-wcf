@@ -19,9 +19,11 @@ namespace SampleWCF
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         [OperationContract]
+        [WebGet(UriTemplate = "echo/{echoWord}", ResponseFormat = WebMessageFormat.Json)]
         string Echo(string echoWord);
 
         [OperationContract]
+        [WebGet]
         string EchoXml(string echoWord);
     }
 
