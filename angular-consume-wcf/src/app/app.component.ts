@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WcfService } from './services/wcf.service';
+import { CoreService } from './services/core.service';
 
 @Component({
   selector: 'app-root',
@@ -12,15 +12,21 @@ export class AppComponent implements OnInit {
   serviceResult: string;
   serviceResultXml: string;
 
-  constructor(private wcfService: WcfService){
+  constructor(private coreService: CoreService){
   }
 
   ngOnInit() {
-    this.wcfService.getEcho('hello').subscribe(result => {
+    this.coreService.getEcho('hello world').subscribe(result => {
       this.serviceResult = result;
     });
-    this.wcfService.getEchoXml('hello world').subscribe(result => {
+    this.coreService.getEchoJson('hello world JSON').subscribe(result => {
       this.serviceResultXml = result;
     });
+    // this.wcfService.getEcho('hello').subscribe(result => {
+    //   this.serviceResult = result;
+    // });
+    // this.wcfService.getEchoXml('hello world').subscribe(result => {
+    //   this.serviceResultXml = result;
+    // });
   }
 }
