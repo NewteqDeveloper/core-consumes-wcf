@@ -22,11 +22,5 @@ export class AppComponent implements OnInit {
     this.coreService.getEchoJson('hello world JSON').subscribe(result => {
       this.serviceResultXml = result;
     });
-    // this.wcfService.getEcho('hello').subscribe(result => {
-    //   this.serviceResult = result;
-    // });
-    // this.wcfService.getEchoXml('hello world').subscribe(result => {
-    //   this.serviceResultXml = result;
-    // });
   }
 }
