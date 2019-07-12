@@ -19,7 +19,12 @@ export class CoreService {
             });
     }
 
-    getEchoJson(message: string): Observable<string> {
+    getEchoJson(message: string): Observable<any> {
+        return this.http
+            .get(`http://localhost:5000/wcf/echoJson?input=${message}`);
+    }
+
+    getEchoJsonParsed(message: string): Observable<string> {
         return this.http
             .get(`http://localhost:5000/wcf/echoJson?input=${message}`)
             .pipe(map((result: any) => {

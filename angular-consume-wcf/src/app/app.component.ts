@@ -19,8 +19,11 @@ export class AppComponent implements OnInit {
     this.coreService.getEcho('hello world').subscribe(result => {
       this.serviceResult = result;
     });
-    this.coreService.getEchoJson('hello world JSON').subscribe(result => {
+    this.coreService.getEchoJsonParsed('hello world JSON').subscribe(result => {
       this.serviceResultJson = result;
+      this.coreService.getEchoJson('hello world JSON AGAIN').subscribe(result => {
+        this.serviceResultJson += '\r\n' + result.value;
+      });
     });
   }
 }
