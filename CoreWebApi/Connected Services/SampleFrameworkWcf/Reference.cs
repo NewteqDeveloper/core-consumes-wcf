@@ -7,74 +7,78 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MySampleWcf
+namespace SampleFrameworkWcf
 {
     using System.Runtime.Serialization;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1-preview-30422-0661")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CompositeType", Namespace="http://schemas.datacontract.org/2004/07/SampleWCF")]
-    public partial class CompositeType : object
+    [System.Runtime.Serialization.DataContractAttribute(Name="ComplexEchoInput", Namespace="http://schemas.datacontract.org/2004/07/")]
+    public partial class ComplexEchoInput : object
     {
         
-        private bool BoolValueField;
-        
-        private string StringValueField;
+        private string WordField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool BoolValue
+        public string Word
         {
             get
             {
-                return this.BoolValueField;
+                return this.WordField;
             }
             set
             {
-                this.BoolValueField = value;
+                this.WordField = value;
             }
         }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1-preview-30422-0661")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ComplexEchoResponse", Namespace="http://schemas.datacontract.org/2004/07/")]
+    public partial class ComplexEchoResponse : object
+    {
+        
+        private string ResponseField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string StringValue
+        public string Response
         {
             get
             {
-                return this.StringValueField;
+                return this.ResponseField;
             }
             set
             {
-                this.StringValueField = value;
+                this.ResponseField = value;
             }
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1-preview-30422-0661")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MySampleWcf.IWcfService")]
-    public interface IWcfService
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SampleFrameworkWcf.ISampleWcf")]
+    public interface ISampleWcf
     {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetData", ReplyAction="http://tempuri.org/IWcfService/GetDataResponse")]
-        System.Threading.Tasks.Task<string> GetDataAsync(int value);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISampleWcf/EchoJson", ReplyAction="http://tempuri.org/ISampleWcf/EchoJsonResponse")]
+        System.Threading.Tasks.Task<string> EchoJsonAsync(string word);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IWcfService/GetDataUsingDataContractResponse")]
-        System.Threading.Tasks.Task<MySampleWcf.CompositeType> GetDataUsingDataContractAsync(MySampleWcf.CompositeType composite);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISampleWcf/EchoXml", ReplyAction="http://tempuri.org/ISampleWcf/EchoXmlResponse")]
+        System.Threading.Tasks.Task<string> EchoXmlAsync(string word);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/Echo", ReplyAction="http://tempuri.org/IWcfService/EchoResponse")]
-        System.Threading.Tasks.Task<string> EchoAsync(string echoWord);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWcfService/EchoXml", ReplyAction="http://tempuri.org/IWcfService/EchoXmlResponse")]
-        System.Threading.Tasks.Task<string> EchoXmlAsync(string echoWord);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISampleWcf/Echo", ReplyAction="http://tempuri.org/ISampleWcf/EchoResponse")]
+        System.Threading.Tasks.Task<SampleFrameworkWcf.ComplexEchoResponse> EchoAsync(SampleFrameworkWcf.ComplexEchoInput input);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1-preview-30422-0661")]
-    public interface IWcfServiceChannel : MySampleWcf.IWcfService, System.ServiceModel.IClientChannel
+    public interface ISampleWcfChannel : SampleFrameworkWcf.ISampleWcf, System.ServiceModel.IClientChannel
     {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.0.1-preview-30422-0661")]
-    public partial class WcfServiceClient : System.ServiceModel.ClientBase<MySampleWcf.IWcfService>, MySampleWcf.IWcfService
+    public partial class SampleWcfClient : System.ServiceModel.ClientBase<SampleFrameworkWcf.ISampleWcf>, SampleFrameworkWcf.ISampleWcf
     {
         
         /// <summary>
@@ -84,57 +88,52 @@ namespace MySampleWcf
         /// <param name="clientCredentials">The client credentials</param>
         static partial void ConfigureEndpoint(System.ServiceModel.Description.ServiceEndpoint serviceEndpoint, System.ServiceModel.Description.ClientCredentials clientCredentials);
         
-        public WcfServiceClient() : 
-                base(WcfServiceClient.GetDefaultBinding(), WcfServiceClient.GetDefaultEndpointAddress())
+        public SampleWcfClient() : 
+                base(SampleWcfClient.GetDefaultBinding(), SampleWcfClient.GetDefaultEndpointAddress())
         {
-            this.Endpoint.Name = EndpointConfiguration.BasicHttpBinding_IWcfService.ToString();
+            this.Endpoint.Name = EndpointConfiguration.BasicHttpBinding_ISampleWcf.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public WcfServiceClient(EndpointConfiguration endpointConfiguration) : 
-                base(WcfServiceClient.GetBindingForEndpoint(endpointConfiguration), WcfServiceClient.GetEndpointAddress(endpointConfiguration))
-        {
-            this.Endpoint.Name = endpointConfiguration.ToString();
-            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
-        }
-        
-        public WcfServiceClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
-                base(WcfServiceClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
+        public SampleWcfClient(EndpointConfiguration endpointConfiguration) : 
+                base(SampleWcfClient.GetBindingForEndpoint(endpointConfiguration), SampleWcfClient.GetEndpointAddress(endpointConfiguration))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public WcfServiceClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(WcfServiceClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
+        public SampleWcfClient(EndpointConfiguration endpointConfiguration, string remoteAddress) : 
+                base(SampleWcfClient.GetBindingForEndpoint(endpointConfiguration), new System.ServiceModel.EndpointAddress(remoteAddress))
         {
             this.Endpoint.Name = endpointConfiguration.ToString();
             ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
         }
         
-        public WcfServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public SampleWcfClient(EndpointConfiguration endpointConfiguration, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(SampleWcfClient.GetBindingForEndpoint(endpointConfiguration), remoteAddress)
+        {
+            this.Endpoint.Name = endpointConfiguration.ToString();
+            ConfigureEndpoint(this.Endpoint, this.ClientCredentials);
+        }
+        
+        public SampleWcfClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress)
         {
         }
         
-        public System.Threading.Tasks.Task<string> GetDataAsync(int value)
+        public System.Threading.Tasks.Task<string> EchoJsonAsync(string word)
         {
-            return base.Channel.GetDataAsync(value);
+            return base.Channel.EchoJsonAsync(word);
         }
         
-        public System.Threading.Tasks.Task<MySampleWcf.CompositeType> GetDataUsingDataContractAsync(MySampleWcf.CompositeType composite)
+        public System.Threading.Tasks.Task<string> EchoXmlAsync(string word)
         {
-            return base.Channel.GetDataUsingDataContractAsync(composite);
+            return base.Channel.EchoXmlAsync(word);
         }
         
-        public System.Threading.Tasks.Task<string> EchoAsync(string echoWord)
+        public System.Threading.Tasks.Task<SampleFrameworkWcf.ComplexEchoResponse> EchoAsync(SampleFrameworkWcf.ComplexEchoInput input)
         {
-            return base.Channel.EchoAsync(echoWord);
-        }
-        
-        public System.Threading.Tasks.Task<string> EchoXmlAsync(string echoWord)
-        {
-            return base.Channel.EchoXmlAsync(echoWord);
+            return base.Channel.EchoAsync(input);
         }
         
         public virtual System.Threading.Tasks.Task OpenAsync()
@@ -149,7 +148,7 @@ namespace MySampleWcf
         
         private static System.ServiceModel.Channels.Binding GetBindingForEndpoint(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IWcfService))
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ISampleWcf))
             {
                 System.ServiceModel.BasicHttpBinding result = new System.ServiceModel.BasicHttpBinding();
                 result.MaxBufferSize = int.MaxValue;
@@ -163,27 +162,27 @@ namespace MySampleWcf
         
         private static System.ServiceModel.EndpointAddress GetEndpointAddress(EndpointConfiguration endpointConfiguration)
         {
-            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IWcfService))
+            if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_ISampleWcf))
             {
-                return new System.ServiceModel.EndpointAddress("http://localhost:58915/WcfService.svc");
+                return new System.ServiceModel.EndpointAddress("http://localhost:63996/SampleWcf.svc");
             }
             throw new System.InvalidOperationException(string.Format("Could not find endpoint with name \'{0}\'.", endpointConfiguration));
         }
         
         private static System.ServiceModel.Channels.Binding GetDefaultBinding()
         {
-            return WcfServiceClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_IWcfService);
+            return SampleWcfClient.GetBindingForEndpoint(EndpointConfiguration.BasicHttpBinding_ISampleWcf);
         }
         
         private static System.ServiceModel.EndpointAddress GetDefaultEndpointAddress()
         {
-            return WcfServiceClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_IWcfService);
+            return SampleWcfClient.GetEndpointAddress(EndpointConfiguration.BasicHttpBinding_ISampleWcf);
         }
         
         public enum EndpointConfiguration
         {
             
-            BasicHttpBinding_IWcfService,
+            BasicHttpBinding_ISampleWcf,
         }
     }
 }

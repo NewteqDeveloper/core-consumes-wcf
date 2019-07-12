@@ -1,7 +1,7 @@
 ﻿using CoreWebApi.Controllers.Base;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using MySampleWcf;
+using SampleFrameworkWcf;
 using System;
 using System.ServiceModel;
 using System.Threading.Tasks;
@@ -28,7 +28,7 @@ namespace CoreWebApi.Controllers
         [Route("echo")]
         public async Task<IActionResult> Echo(string input)
         {
-            var wcfClient = new WcfServiceClient();
+            var wcfClient = new SampleWcfClient();
             if (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
             {
                 input = "nothing set";
@@ -38,7 +38,7 @@ namespace CoreWebApi.Controllers
 
             try
             {
-                output = await wcfClient.EchoAsync(input);
+                output = await wcfClient.EchoXmlAsync(input);
             }
             catch (CommunicationException commsException)
             {
@@ -69,7 +69,7 @@ namespace CoreWebApi.Controllers
         [Route("echoJson")]
         public async Task<IActionResult> EchoJson(string input)
         {
-            var wcfClient = new WcfServiceClient();
+            var wcfClient = new SampleWcfClient();
             if (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
             {
                 input = "nothing set";
@@ -80,7 +80,7 @@ namespace CoreWebApi.Controllers
 
             try
             {
-                output = await wcfClient.EchoAsync(input);
+                output = await wcfClient.EchoJsonAsync(input);
             }
             catch (CommunicationException commsException)
             {

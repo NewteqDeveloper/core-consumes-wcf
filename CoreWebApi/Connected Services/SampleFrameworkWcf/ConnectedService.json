@@ -1,16 +1,19 @@
 ﻿{
   "ProviderId": "Microsoft.VisualStudio.ConnectedService.Wcf",
   "Version": "15.0.30423.811",
+  "GettingStartedDocument": {
+    "Uri": "https://go.microsoft.com/fwlink/?linkid=858517"
+  },
   "ExtendedData": {
     "inputs": [
-      "http://localhost:58915/WcfService.svc"
+      "http://localhost:63996/SampleWcf.svc"
     ],
     "collectionTypes": [
       "System.Array",
       "System.Collections.Generic.Dictionary`2"
     ],
     "namespaceMappings": [
-      "*, MySampleWcf"
+      "*, SampleFrameworkWcf"
     ],
     "references": [
       "Microsoft.AspNetCore, {Microsoft.AspNetCore, 2.1.1}",
